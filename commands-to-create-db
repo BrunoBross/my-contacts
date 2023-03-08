@@ -1,0 +1,21 @@
+  docker run --name pg -e POSTGRES_USER=root -e POSTGRES_PASSWORD=root -p 5433:5432 -d postgres : subir container do banco
+
+  docker exec -it "nome banco" bash : entrar no bash
+
+	psql -U "usuario definido nas flags ao subir o banco/container" : logar com o user
+
+	\l : listar bases de dados
+
+	criar uma base de dados...
+
+	\c "nomebase" : conectar a um banco de dados
+
+	criar extensao...
+
+	criar tabela categories...
+
+  criar tabela contacts...
+
+  (os comandos estão no schema.sql)
+
+	\dt : mostrar tabelas dentro do banco

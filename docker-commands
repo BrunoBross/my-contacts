@@ -1,0 +1,71 @@
+OBS:
+	"Tag" no docker se refere a versão
+
+	É possível subir um novo container sem ter a imagem baixada, pois o docker verifica que nao possui imagem, e baixa a imagem logo após automaticamente
+
+LINKS:
+
+	hub.docker.com : site para a busca de imagens docker, entre outros
+
+COMANDOS DOCKER:
+
+	docker pull "banco" : comando para instalar imagens de bancos (EX: postgres, ou seja, docker pull postgres) OBS: caso nao forneça uma versão, ele irá baixar versão latest (tag latest)
+
+	docker image ls /ou/ docker ps : comando para listar imagens, (flag -a para listar todos containers da máquina, independente de estar rodando ou não, rodar o docker container ls -a, ao inves do docker image, ou o docker ps -a normalmente)
+
+	docker stop "nome do container /ou/ ID do container" : comando para derrubar um container
+
+	docker start "nome do container /ou/ ID do container" : comando para subir um container
+
+	docker run "flags" : comando para subir/criar um novo container
+
+	docker rmi "repository name /ou/ image id": apagar uma imagem do computador
+
+	docker container rm "container name /ou/ ID do container": apagar um container do computador
+
+	docker exect -it "nome" bash : comando para executar o banco de forma interativa
+
+EXEMPLO DE COMANDO PARA SUBIR UM CONTAINER POSTGRES:
+
+	docker run --name pg -e POSTGRES_USER=root -e POSTGRES_PASSWORD=root -p 5432:5432 -d postgres
+
+	docker run : comando para subir o banco
+
+	--name pg : flag para definir o nome do banco passando o nome, nesse caso pg, mas pode ser outro
+
+	-e POSTGRES_PASSWORD : ||
+	-e POSTGRES_USER : flag para definir enviroment variables, nesse caso usuario e senha do banco, as variaveis podem ser vistas na documentaçao do banco no site hub.docker.com
+
+	-p 5432:5432 : flag para definir a porta do banco, a primeira é a porta da máquina e a segunda a porta do container, 5432 é uma porta padrão do postgres, cada banco tem a sua conforme docs
+
+	-d : flag para dizer que o container deve ser executado em background, pois se nao ele executa no proprio terminal
+
+	postgres : nome da imagem a ser executada no container
+
+
+
+COMANDOS EXTRAS POSTGRES NO BASH:
+
+	docker exec -it "nome banco" bash : entrar no bash
+
+	psql -U "usuario definido nas flags ao subir o banco/container" : logar com o user
+
+	\l : listar bases de dados
+
+	criar uma base de dados...
+
+	\c "nomebase" : conectar a um banco de dados
+
+	criar extensao...
+
+	criar tabela...
+
+	\dt : mostrar tabelas dentro do banco
+
+
+EXTRA:
+
+  sudo kill -9 `sudo lsof -t -i:5433` : matar a porta 5433 ou outra porta, pra subir container nela
+
+
+
